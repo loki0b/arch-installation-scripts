@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pacman -Sy archlinux-keyring --nofconfirm
+pacman -Sy archlinux-keyring --noconfirm
 pacstrap -K /mnt base linux linux-firmware intel-ucode vim man-db man-pages texinfo
 genfstab -U /mnt >> /mnt/etc/fstab
 cp script1.sh /mnt
