@@ -31,14 +31,12 @@ misc() {
 xorg_i3() {
     sudo pacman -S xorg-server xorg-xinit xorg-xrandr i3 dmenu xclip alacritty
     sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc
-    sudo echo 'Section "InputClass"' >> /etc/X11/xorg.conf.d/00-keyboard.conf
-    sudo sed -i '/Section "InputClass"/a \\tIdentifier "system-keyboard"\n\tOption "XkbLayout" "br"\n\tOption "XkbVariant" "abnt2"\nEndSection' /etc/X11/xorg.conf.d/00-keyboard.conf
 }
 
 paru() {
     if [[ ! -x paru ]]; then
         git clone https://aur.archlinux.org/paru.git ~/
-	    cd paru
+	cd paru
     	makepkg -si
         # Testing makepkg -sic
     	paru --gendb
@@ -46,7 +44,6 @@ paru() {
     	sudo sed -i 's/#Color/Color/' $PACMAN_CONF_PATH
     	sudo sed -i 's/#BottomUp/BottomUp/' $PARU_CONF_PATH
         cd ..
-
         echo "Paru installation completed"
     else
         echo "Paru already installed"
@@ -54,8 +51,8 @@ paru() {
 }
 
 zsh() {
-    local NEW_THEME='ZSH_THEME="gentoo"'
-    local PLUGINS='plugins=(git zsh-syntax-highlighting)'
+	local NEW_THEME='ZSH_THEME="gentoo"'
+	local PLUGINS='plugins=(git zsh-syntax-highlighting)'
 
 	sudo pacman -S zsh --needed --noconfirm
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -72,7 +69,8 @@ clean() {
 
 tmp_dir
 audio_bluetooth
-misc
+#misc
 xorg_i3
 paru
 zsh
+clean
