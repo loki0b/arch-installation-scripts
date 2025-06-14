@@ -2,7 +2,6 @@
 
 #TODO
 # config time zone and ntp
-
 ZSHRC='~/.zshrc'
 PACMAN_CONF_PATH='/etc/pacman.conf'
 PARU_CONF_PATH='/etc/paru.conf'
@@ -66,10 +65,6 @@ zsh() {
 clean() {
     rm -rf ~/.cargo
 }
-
-sudo pacman -S iwd nftables --needed --noconfirm
-sudo pacman -Rnsdd wap_supplicant iptables
-sudo systemctl enable ntp.service --now
 
 tmp_dir
 audio_bluetooth
