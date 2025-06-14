@@ -67,6 +67,10 @@ clean() {
     rm -rf ~/.cargo
 }
 
+sudo pacman -S iwd nftables --needed --noconfirm
+sudo pacman -Rnsdd wap_supplicant iptables
+sudo systemctl enable ntp.service --now
+
 tmp_dir
 audio_bluetooth
 #misc
