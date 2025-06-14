@@ -1,6 +1,7 @@
 #!/bin/bash
 
-pacstrap -K /mnt base linux linux-firmware intel-ucode vim networkmanager man-db man-pages texinfo 
+pacman -Sy archlinux-keyring --nofconfirm
+pacstrap -K /mnt base linux linux-firmware intel-ucode vim man-db man-pages texinfo
 genfstab -U /mnt >> /mnt/etc/fstab
 cp script1.sh /mnt
 arch-chroot /mnt
