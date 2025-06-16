@@ -2,6 +2,8 @@
 
 #TODO
 # config time zone and ntp
+# config vms
+# set dpi
 ZSHRC='~/.zshrc'
 PACMAN_CONF_PATH='/etc/pacman.conf'
 PARU_CONF_PATH='/etc/paru.conf'
