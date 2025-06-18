@@ -1,9 +1,23 @@
 #!/bin/bash
 
 #TODO
+# install wireless-regdb and add to mkinitcpio
+# set units with systemd
+# set mkinitcpio
+# install dosfstools
+# investigate firmware
+# set systemd units
+# install wireless-regdb
+# kernel energy perf switchi
+# set intel_blacklight acpi
+# unmet condition checks 
 # config time zone and ntp
 # config vms
+# dmidecode
 # set dpi
+# codium + ext and settings
+# install rtkit  to pipewire and upower to wireplumber enable upower
+# install libcamera and pipewire-libcamera
 ZSHRC='~/.zshrc'
 PACMAN_CONF_PATH='/etc/pacman.conf'
 PARU_CONF_PATH='/etc/paru.conf'
