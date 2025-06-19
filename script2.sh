@@ -18,6 +18,7 @@
 # codium + ext and settings
 # install rtkit  to pipewire and upower to wireplumber enable upower
 # install libcamera and pipewire-libcamera
+# install notofonts
 ZSHRC='~/.zshrc'
 PACMAN_CONF_PATH='/etc/pacman.conf'
 PARU_CONF_PATH='/etc/paru.conf'
