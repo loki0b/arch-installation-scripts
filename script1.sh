@@ -11,9 +11,7 @@ echo -e 'KEYMAP=us\nFONT=sun12x22' >> /etc/vconsole.conf
 echo Hostname:
 read HOSTNAME
 echo "$HOSTNAME" >> /etc/hostname
-sed -i '/# See hosts(5) for details./a 127.0.0.1\tlocaldomain' /etc/hosts
-sed -i '/127.0.0.1\tlocaldomain/a ::1\t\tlocaldomain' /etc/hosts
-sed -i "/::1\t\tlocaldomain/a 127.0.1.1\t$HOSTNAME.localdomain $HOSTNAME" /etc/hosts
+sed -i "/# See hosts(5) for details./a 127.0.0.1\tlocaldomain\n::1\t\tlocaldomain\n127.0.1.1\t$HOSTNAME.localdomain $HOSTNAME" /etc/hosts
 
 #pacman -S dosfstools btrfs-progs e2fsprogs fschk helper to mkinitcpio
 # reflector
@@ -21,8 +19,7 @@ sed -i "/::1\t\tlocaldomain/a 127.0.1.1\t$HOSTNAME.localdomain $HOSTNAME" /etc/h
 #config iwd/main.conf
 pacman -S iwd ntp --needed --noconfirm
 
-touch /etc/systemd/network/99-default.network
-echo -e '[Match]\n\n[Network]\nDHCP=yes' >> /etc/systemd/network/99-default.network #wip
+echo -e '[Match]\nName=*\n[Network]\nDHCP=yes' > /etc/systemd/network/99-default.network
 
 systemctl enable iwd
 systemctl enable ntpd
