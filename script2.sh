@@ -1,23 +1,17 @@
 #!/bin/bash
 
 #TODO
-# install wireless-regdb and add to mkinitcpio
-# set units with systemd
+# install poolkit (user run root bin
 # set mkinitcpio
 # install dosfstools
 # investigate firmware
 # set systemd units
-# install wireless-regdb
 # kernel energy perf switchi
-# set intel_blacklight acpi
-# unmet condition checks 
 # config time zone and ntp
 # config vms
 # dmidecode
-# set dpi
+# set ssh env
 # codium + ext and settings
-# install rtkit  to pipewire and upower to wireplumber enable upower
-# install libcamera and pipewire-libcamera
 # install notofonts
 ZSHRC='~/.zshrc'
 PACMAN_CONF_PATH='/etc/pacman.conf'
@@ -31,9 +25,20 @@ tmp_dir() {
 }
 
 audio_bluetooth() {
-    sudo pacman -S pipewire wireplumber pipewire-audio --needed --noconfirm
-    sudo pacman -S bluez bluez-utils pipewire-pulse --needed --noconfirm
-    sudo systemctl enable bluetooth.service
+    	
+	# Audio
+	sudo pacman -S pipewire wireplumber pipewire-audio --needed --noconfirm
+    	# Bluetooth
+    	sudo pacman -S bluez bluez-utils pipewire-pulse --needed --noconfirm
+    
+    #misc
+    sudo pacman -S rtkit upower xdg-desktop-portal --needed --noconfirm
+    sudo pacman -S libcamera pipewire-libcamera --needed --noconfirm
+	sudo pacman -S pavucontrol --needed --noconfirm
+
+    sudo systemctl enable --now bluetooth.service
+    systemctl enable --now pipewire.service pipewire-pulse.service wireplumber.service
+   sudo systemctl enable --now upower
 }
 
 misc() {
@@ -49,10 +54,11 @@ xorg_i3() {
     sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc
 }
 
+# fix
 paru() {
     if [[ ! -x paru ]]; then
-        git clone https://aur.archlinux.org/paru.git ~/
-	cd paru
+        git clone https://aur.archlinux.org/paru-bin.git
+	cd paru-bin
     	makepkg -si
         # Testing makepkg -sic
     	paru --gendb
@@ -80,13 +86,13 @@ zsh() {
 }
 
 clean() {
-    rm -rf ~/.cargo
+	# do something
 }
 
-tmp_dir
-audio_bluetooth
+#tmp_dir
+#audio_bluetooth
 #misc
-xorg_i3
+#xorg_i3
 paru
-zsh
-clean
+#zsh
+#clean
