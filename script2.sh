@@ -13,7 +13,6 @@
 # set ssh env
 # codium + ext and settings
 # install notofonts
-ZSHRC='~/.zshrc'
 PACMAN_CONF_PATH='/etc/pacman.conf'
 PARU_CONF_PATH='/etc/paru.conf'
 
@@ -73,15 +72,16 @@ paru() {
 }
 
 zsh() {
+	local ZSHRC='~/.zshrc'
 	local NEW_THEME='ZSH_THEME="gentoo"'
 	local PLUGINS='plugins=(git zsh-syntax-highlighting)'
 
 	sudo pacman -S zsh --needed --noconfirm
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	# Theme
-    sed -i "s/ZSH_THEME=\"robbyrussell\"/$NEW_THEME" $ZSHRC
-	# Syntax highlighting
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+	sed -i "s/ZSH_THEME=\"robbyrussell\"/$NEW_THEME" $ZSHRC
+	# Plugins
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting # TODO: check if ZSH_CUSTOM exists
     sed -i "s/plugins=(git)/PLUGINS" $ZSHRC
 }
 
@@ -93,6 +93,6 @@ clean() {
 #audio_bluetooth
 #misc
 #xorg_i3
-paru
+#paru
 #zsh
 #clean
