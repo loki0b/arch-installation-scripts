@@ -6,7 +6,6 @@
 # install dosfstools
 # investigate firmware
 # set systemd units
-# kernel energy perf switchi
 # config time zone and ntp
 # config vms
 # dmidecode
@@ -14,14 +13,6 @@
 # codium + ext and settings
 # install notofonts
 PACMAN_CONF_PATH='/etc/pacman.conf'
-PARU_CONF_PATH='/etc/paru.conf'
-
-tmp_dir() {
-    if [[ ! -d tmp ]]; then
-        mkdir tmp
-    fi
-    cd tmp
-}
 
 audio_bluetooth() {
     	
@@ -30,21 +21,21 @@ audio_bluetooth() {
     	# Bluetooth
     	sudo pacman -S bluez bluez-utils pipewire-pulse --needed --noconfirm
     
-    #misc
-    sudo pacman -S rtkit upower xdg-desktop-portal --needed --noconfirm
-    sudo pacman -S libcamera pipewire-libcamera --needed --noconfirm
+   	#misc
+	sudo pacman -S rtkit upower xdg-desktop-portal --needed --noconfirm
+	sudo pacman -S libcamera pipewire-libcamera --needed --noconfirm
 
-    sudo systemctl enable --now bluetooth.service
-    systemctl enable --now pipewire.service pipewire-pulse.service wireplumber.service
-   sudo systemctl enable --now upower
+	sudo systemctl enable --now bluetooth.service
+	systemctl enable --now pipewire.service pipewire-pulse.service wireplumber.service
+	sudo systemctl enable --now upower
 }
 
 misc() {
     sudo pacman -S git base-devel --needed --noconfirm
     sudo pacman -S openssh --needed --noconfirm
-    sudo pacman -S lsof tmux htop valgrind strace usbutils --needed --noconfirm
-    sudo pacman -S pavucontrol --needed --noconfirm
-    sudo pacman -S obsidian neovim firefox --needed --noconfirm
+    #sudo pacman -S lsof tmux htop valgrind strace usbutils --needed --noconfirm
+    #sudo pacman -S pavucontrol --needed --noconfirm
+    #sudo pacman -S obsidian neovim firefox --needed --noconfirm
 }
 
 xorg_i3() {
@@ -84,14 +75,8 @@ zsh() {
     sed -i "s/plugins=(git)/PLUGINS" $ZSHRC
 }
 
-clean() {
-	# do something
-}
 
-#tmp_dir
 audio_bluetooth
 misc
 xorg_i3
-#paru
 zsh
-#clean
