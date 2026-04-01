@@ -33,7 +33,6 @@ audio_bluetooth() {
     #misc
     sudo pacman -S rtkit upower xdg-desktop-portal --needed --noconfirm
     sudo pacman -S libcamera pipewire-libcamera --needed --noconfirm
-	sudo pacman -S pavucontrol --needed --noconfirm
 
     sudo systemctl enable --now bluetooth.service
     systemctl enable --now pipewire.service pipewire-pulse.service wireplumber.service
@@ -43,8 +42,8 @@ audio_bluetooth() {
 misc() {
     sudo pacman -S git base-devel --needed --noconfirm
     sudo pacman -S openssh --needed --noconfirm
-    sudo pacman -S lsof tmux htop valgrind strace neovim usbutils --needed --noconfirm
-    sudo pacman -S network-manager-applet pavucontrol --needed --noconfirm
+    sudo pacman -S lsof tmux htop valgrind strace usbutils --needed --noconfirm
+    sudo pacman -S pavucontrol --needed --noconfirm
     sudo pacman -S obsidian neovim firefox --needed --noconfirm
 }
 
@@ -90,9 +89,9 @@ clean() {
 }
 
 #tmp_dir
-#audio_bluetooth
-#misc
-#xorg_i3
+audio_bluetooth
+misc
+xorg_i3
 #paru
-#zsh
+zsh
 #clean

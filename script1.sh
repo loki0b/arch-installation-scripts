@@ -17,7 +17,7 @@ echo -e 'KEYMAP=us\nFONT=sun12x22' >> /etc/vconsole.conf
 
 echo Hostname:
 read HOSTNAME
-echo "$HOSTNAME" >> /etc/hostname
+echo "$HOSTNAME" > /etc/hostname
 
 # reflector
 #config iwd/main.conf
@@ -44,7 +44,7 @@ echo "$USER password:"
 passwd "$USER"
 
 # if ssd exists
-systemctl enable fstrim.timer
+#systemctl enable fstrim.timer
 
 # TODO: choose between options
 pacman -S grub efibootmgr --noconfirm --needed
