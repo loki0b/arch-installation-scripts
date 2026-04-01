@@ -54,6 +54,9 @@ gpasswd -a "$USER" wheel
 # if ssd exists
 #systemctl enable fstrim.timer
 
+# TODO: System
+pacman -S polkit --needed --noconfirm
+
 # TODO: choose between options
 pacman -S grub efibootmgr --noconfirm --needed
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub --recheck

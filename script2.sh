@@ -1,7 +1,6 @@
 #!/bin/bash
 
 #TODO
-# install poolkit (user run root bin
 # set mkinitcpio
 # install dosfstools
 # investigate firmware
