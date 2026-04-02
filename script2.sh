@@ -11,7 +11,7 @@
 # set ssh env
 # codium + ext and settings
 # install notofonts
-PACMAN_CONF_PATH='/etc/pacman.conf'
+# usbutils
 
 audio_bluetooth() {
     	
@@ -32,9 +32,7 @@ audio_bluetooth() {
 misc() {
     sudo pacman -S git base-devel --needed --noconfirm
     sudo pacman -S openssh --needed --noconfirm
-    #sudo pacman -S lsof tmux htop valgrind strace usbutils --needed --noconfirm
-    #sudo pacman -S pavucontrol --needed --noconfirm
-    #sudo pacman -S obsidian neovim firefox --needed --noconfirm
+    #sudo pacman -S lsof tmux htop valgrind strace  --needed --noconfirm
 }
 
 xorg_i3() {
@@ -60,22 +58,16 @@ paru() {
     fi
 }
 
-zsh() {
-	local ZSHRC='~/.zshrc'
-	local NEW_THEME='ZSH_THEME="gentoo"'
-	local PLUGINS='plugins=(git zsh-syntax-highlighting)'
-
+user() {
 	sudo pacman -S zsh --needed --noconfirm
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-	# Theme
-	sed -i "s/ZSH_THEME=\"robbyrussell\"/$NEW_THEME" $ZSHRC
-	# Plugins
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting # TODO: check if ZSH_CUSTOM exists
-    sed -i "s/plugins=(git)/PLUGINS" $ZSHRC
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+	sudo pacman -S firefox obsidian --needed --noconfirm
+
 }
 
 
 audio_bluetooth
 misc
 xorg_i3
-zsh
+user
