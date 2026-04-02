@@ -36,7 +36,7 @@ misc() {
 }
 
 xorg_i3() {
-    sudo pacman -S xorg-server xorg-xinit xorg-xrandr i3 dmenu xclip alacritty
+    sudo pacman -S xorg-server xorg-xinit xorg-xrandr xdg-utils i3 dmenu xclip alacritty
     sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc
 }
 
