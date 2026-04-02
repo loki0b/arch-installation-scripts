@@ -29,7 +29,7 @@ mkfs.btrfs -f "$DRIVE_PATH"4
 # Mouting
 mount "$DRIVE_PATH"3 /mnt
 mount --mkdir "$DRIVE_PATH"1 /mnt/boot
-mount --mkdir "$DRIVE_PATH"3 /mnt/home
+mount --mkdir "$DRIVE_PATH"4 /mnt/home
 swapon "$DRIVE_PATH"2
 
 # TODO: Select mirrors
