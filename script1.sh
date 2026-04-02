@@ -61,30 +61,3 @@ pacman -S polkit --needed --noconfirm
 pacman -S grub efibootmgr --noconfirm --needed
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
-
-# TODO: User Specific
-
-pacman -S vim man-db man-pages
-
-# Audio
-pacman -S pipewire wireplumber pipewire-audio --needed --noconfirm
-
-# Bluetooth
-sudo pacman -S bluez bluez-utils pipewire-pulse --needed --noconfirm
-
-#misc
-pacman -S rtkit upower xdg-desktop-portal --needed --noconfirm
-pacman -S libcamera pipewire-libcamera --needed --noconfirm
-
-systemctl enable bluetooth.service
-systemctl enable pipewire.service pipewire-pulse.service wireplumber.service
-systemctl enable upower
-
-
-pacman -S xorg-server xorg-xinit xorg-xrandr xdg-utils i3 dmenu xclip alacritty
-cp /etc/X11/xinit/xinitrc ~/.xinitrc
-
-pacman -S git base-devel --needed --noconfirm
-pacman -S openssh --needed --noconfirm
-
-

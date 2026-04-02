@@ -36,7 +36,7 @@ swapon "$DRIVE_PATH"2
 
 # packages vim man-db man-pages texinfo wireless-regdb
 pacman -Sy archlinux-keyring --noconfirm
-pacstrap -K /mnt base linux linux-firmware nftables iptables-nft "$CPU-ucode"
+pacstrap -K /mnt base linux linux-firmware nftables iptables-nft "$CPU-ucode" vim man-db man-pages texinfo
 genfstab -U /mnt >> /mnt/etc/fstab
 
 cp script1.sh /mnt

@@ -13,32 +13,13 @@
 # install notofonts
 # usbutils
 
-audio_bluetooth() {
-    	
-	# Audio
-	sudo pacman -S pipewire wireplumber pipewire-audio --needed --noconfirm
-    	# Bluetooth
-    	sudo pacman -S bluez bluez-utils pipewire-pulse --needed --noconfirm
-    
-   	#misc
-	sudo pacman -S rtkit upower xdg-desktop-portal --needed --noconfirm
-	sudo pacman -S libcamera pipewire-libcamera --needed --noconfirm
-
-	sudo systemctl enable --now bluetooth.service
-	systemctl enable --now pipewire.service pipewire-pulse.service wireplumber.service
-	sudo systemctl enable --now upower
-}
-
 misc() {
     sudo pacman -S git base-devel --needed --noconfirm
     sudo pacman -S openssh --needed --noconfirm
     #sudo pacman -S lsof tmux htop valgrind strace  --needed --noconfirm
 }
 
-xorg_i3() {
-    sudo pacman -S xorg-server xorg-xinit xorg-xrandr xdg-utils i3 dmenu xclip alacritty
-    sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc
-}
+
 
 # fix
 paru() {
@@ -66,8 +47,25 @@ user() {
 
 }
 
+# TODO: User Specific
 
-audio_bluetooth
-misc
-xorg_i3
-user
+# Audio
+sudo pacman -S pipewire wireplumber pipewire-audio --needed --noconfirm
+
+# Bluetooth
+sudo pacman -S bluez bluez-utils pipewire-pulse --needed --noconfirm
+
+#misc
+sudo pacman -S rtkit upower xdg-desktop-portal --needed --noconfirm
+sudo pacman -S libcamera pipewire-libcamera --needed --noconfirm
+
+sudo systemctl enable bluetooth.service
+sudo systemctl enable pipewire.service pipewire-pulse.service wireplumber.service
+sudo systemctl enable upower
+
+
+sudo pacman -S xorg-server xorg-xinit xorg-xrandr xdg-utils i3 dmenu xclip alacritty
+sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc
+
+sudo pacman -S git base-devel --needed --noconfirm
+sudo pacman -S openssh --needed --noconfirm
