@@ -18,9 +18,10 @@ sgdisk -Z "$DRIVE_PATH"
 sgdisk -n 1:0:+512M -t 1:ef00 -c 1:"EFI" "$DRIVE_PATH"
 sgdisk -n 2:0:+4G -t 2:8200 -c 2:"SWAP" "$DRIVE_PATH"
 sgdisk -n 3:0:+100G -t 3:8304 -c 3:"ROOT" "$DRIVE_PATH"
-sgdisk -n 4:0:0 -t 4:8302 -c 4:"HOME" "$DRIVE_PATH"
+sgdisk -n 4:0:+300G -t 4:8302 -c 4:"HOME" "$DRIVE_PATH"
 
 # Formating partitions
+# TODO: Choose fs
 mkfs.fat -F 32 "$DRIVE_PATH"1
 mkswap "$DRIVE_PATH"2
 mkfs.btrfs -f "$DRIVE_PATH"3
@@ -34,7 +35,6 @@ swapon "$DRIVE_PATH"2
 
 # TODO: Select mirrors
 
-# packages vim man-db man-pages texinfo wireless-regdb
 pacman -Sy archlinux-keyring --noconfirm
 pacstrap -K /mnt base linux linux-firmware nftables iptables-nft "$CPU-ucode" vim man-db man-pages texinfo
 genfstab -U /mnt >> /mnt/etc/fstab

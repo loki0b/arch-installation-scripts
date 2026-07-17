@@ -2,7 +2,6 @@
 
 # TODO:
 # Always check before run a command
-# activate wireless-regdb
 #pacman -S dosfstools btrfs-progs e2fsprogs fschk helper to mkinitcpio
 
 
@@ -14,25 +13,27 @@ hwclock --systohc
 
 # TODO: Network
 #  Wireless
+# activate wireless-regdb
 #config iwd/main.conf
 pacman -S iwd iw wireless-regdb --needed --noconfirm
 systemctl enable iwd
 
-pacman -S ntp --needed --noconfirm
-systemctl enable ntpd
+# ntp
+systemctl enable systemd-timesyncd.service
 
 # get interface's name and add
-echo -e '[Match]\nName=*\n[Network]\nDHCP=yes' > /etc/systemd/network/99-default.network
+echo -e '[Match]\nName=wlan*\n[Network]\nDHCP=yes' > /etc/systemd/network/99-default.network
 systemctl enable systemd-networkd
 systemctl enable systemd-resolved
+# check if its working
 ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
 # TODO: choose keymap and lang
 # change console font
 sed -i "s/#en_US.UTF-8/en_US.UTF-8/" /etc/locale.gen
 locale-gen
-echo LANG=en_US.UTF-8 >> /etc/locale.conf
-echo -e 'KEYMAP=us\nFONT=sun12x22' >> /etc/vconsole.conf
+echo 'LANG=en_US.UTF-8' >> /etc/locale.conf
+echo 'KEYMAP=us' >> /etc/vconsole.conf
 
 echo Hostname:
 read HOSTNAME
@@ -50,6 +51,7 @@ useradd -m "$USER"
 echo "$USER password:"
 passwd "$USER"
 gpasswd -a "$USER" wheel
+# unconmment wheel group
 
 # if ssd exists
 #systemctl enable fstrim.timer

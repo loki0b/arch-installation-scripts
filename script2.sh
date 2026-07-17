@@ -2,36 +2,31 @@
 
 #TODO
 # set mkinitcpio
-# install dosfstools
-# investigate firmware
-# set systemd units
-# config time zone and ntp
-# config vms
-# dmidecode
-# set ssh env
-# codium + ext and settings
-# install notofonts
-# usbutils
 
 misc() {
     sudo pacman -S git base-devel --needed --noconfirm
     sudo pacman -S openssh --needed --noconfirm
-    #sudo pacman -S lsof tmux htop valgrind strace  --needed --noconfirm
+    sudo pacman -S lsof tmux htop valgrind strace dosfstools usbutils pkgfile dmidecode --needed --noconfirm
 }
 
+virtual_machine() {
+	
+}
 
-
-# fix
 paru() {
+	local PACMAN_CONF_PATH='/etc/pacman.conf'
+	local PARU_CONF_PATH='/etc/paru.conf'
+
     if [[ ! -x paru ]]; then
-        git clone https://aur.archlinux.org/paru-bin.git
-	cd paru-bin
+        git clone https://aur.archlinux.org/paru.git
+	cd paru
     	makepkg -si
         # Testing makepkg -sic
     	paru --gendb
         paru -c --noconfirm
     	sudo sed -i 's/#Color/Color/' $PACMAN_CONF_PATH
     	sudo sed -i 's/#BottomUp/BottomUp/' $PARU_CONF_PATH
+	rm -rf "$HOME/.cargo"
         cd ..
         echo "Paru installation completed"
     else
@@ -67,5 +62,4 @@ sudo systemctl enable upower
 sudo pacman -S xorg-server xorg-xinit xorg-xrandr xdg-utils i3 dmenu xclip alacritty
 sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc
 
-sudo pacman -S git base-devel --needed --noconfirm
-sudo pacman -S openssh --needed --noconfirm
+misc
