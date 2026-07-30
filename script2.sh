@@ -2,10 +2,19 @@
 
 #TODO
 # set mkinitcpio
+# set resolver
+#
+
+#nmap, wireshark, tcpdump, openvpn, strongswan
+
+dev() {
+    sudo pacman -S base-devel --needed --noconfirm
+    sudo pacman -S git openssh --needed --noconfirm
+    sudo pacman -S docker docker-compose docker-buildx --needed --noconfirm
+    sudo systemctl enable docker.socket
+}
 
 misc() {
-    sudo pacman -S git base-devel --needed --noconfirm
-    sudo pacman -S openssh --needed --noconfirm
     sudo pacman -S lsof tmux htop valgrind strace dosfstools usbutils pkgfile dmidecode --needed --noconfirm
 }
 
@@ -39,27 +48,25 @@ user() {
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 	sudo pacman -S firefox obsidian --needed --noconfirm
-
 }
 
 # TODO: User Specific
 
 # Audio
 sudo pacman -S pipewire wireplumber pipewire-audio --needed --noconfirm
+sudo systemctl --user enable pipewire.service pipewire-pulse.service wireplumber.service
 
 # Bluetooth
 sudo pacman -S bluez bluez-utils pipewire-pulse --needed --noconfirm
+sudo systemctl enable bluetooth.service
 
 #misc
 sudo pacman -S rtkit upower xdg-desktop-portal --needed --noconfirm
 sudo pacman -S libcamera pipewire-libcamera --needed --noconfirm
-
-sudo systemctl enable bluetooth.service
-sudo systemctl enable pipewire.service pipewire-pulse.service wireplumber.service
 sudo systemctl enable upower
-
 
 sudo pacman -S xorg-server xorg-xinit xorg-xrandr xdg-utils i3 dmenu xclip alacritty
 sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc
 
+dev
 misc
