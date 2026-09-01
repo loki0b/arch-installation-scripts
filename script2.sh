@@ -5,7 +5,9 @@
 # set resolver
 #
 
-#nmap, wireshark, tcpdump, openvpn, strongswan
+#nmap, wireshark, tcpdump, openvpn, strongswan, tor, torsocks, traceroute, strace, ltrace
+
+network() {}
 
 dev() {
     sudo pacman -S base-devel --needed --noconfirm
